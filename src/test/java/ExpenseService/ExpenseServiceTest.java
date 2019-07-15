@@ -6,6 +6,7 @@ import ExpenseService.Project.Project;
 import org.junit.jupiter.api.Test;
 
 import static ExpenseService.ExpenseService.getExpenseCodeByProjectTypeAndName;
+import static ExpenseService.Project.ProjectType.EXTERNAL;
 import static ExpenseService.Project.ProjectType.INTERNAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,8 +26,12 @@ class ExpenseServiceTest {
     @Test
     void should_return_expense_type_A_if_project_is_external_and_name_is_project_A() throws UnexpectedProjectTypeException {
         // given
+        ExpenseService expenseService = new ExpenseService();
+        Project project = new Project(EXTERNAL, "Project A");
         // when
+        ExpenseType externalTyteA = expenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
+        assertEquals(ExpenseType.EXPENSE_TYPE_A, externalTyteA);
     }
 
     @Test
